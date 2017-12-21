@@ -23,25 +23,20 @@ function Create_Christmas_Presents()
     local allprops = GetReclaimablesInRect(Map_Area)
     local StoneName = {'rock', 'boulder', 'fieldstone', 'iceberg'}
     local number_of_props = table.getn(allprops)
-    
+
     for _, r in allprops or {} do
         local replaceit = 0
-        local propid = r:GetBlueprint().BlueprintId
-        if string.find(propid, 'tree') then
+        local propbp = r:GetBlueprint()
+        if propbp.ScriptClass == 'Tree' then
             replaceit = 0.035
-        else
-            for j = 1, table.getn(StoneName) or {} do
-                if string.find(propid, StoneName[j]) then  
-                    replaceit = 0.09
-                    break
-                end
-            end
+        elseif string.find(propbp.Interface.HelpText, 'Rock') then  
+            replaceit = 0.09
         end
         if number_of_props > 0 then
             replaceit = replaceit * 10000/number_of_props
         end
         if (replaceit > 0) then
-            if(math.random() < replaceit) then
+            if(math.random(100) < 100 * replaceit) then
                 local prop = r
                 ListOfProps[i] = prop
                 r:Destroy()
@@ -77,5 +72,9 @@ function Create_Christmas_Presents()
             new_size = 0.084
         end
         NewGift:SetScale(new_size)
+        
+        local orient = math.random(628)/100-3.14
+        local vec = VECTOR3(math.cos(orient),0,math.sin(orient))
+        NewGift:SetOrientation(OrientFromDir( vec ), true)
     end
 end
