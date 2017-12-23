@@ -45,7 +45,7 @@ function Create_Christmas_Presents()
         end
     end
 
-    local color_gifts = {'blue', 'green', 'green2', 'pink', 'red', 'yellow'}
+    local color_gifts = {'blue', 'green', 'green2', 'pink', 'red', 'yellow','snowflake', 'owl', 'star'}
     local new_props = {}
     for _, color in color_gifts do
         new_props[table.getn(new_props)+1] = '/mods/santa_is_coming_reloaded/props/gift_' .. color .. '/gift_' .. color .. '_prop.bp'
