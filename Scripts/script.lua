@@ -77,4 +77,18 @@ function Create_Christmas_Presents()
         local vec = VECTOR3(math.cos(orient),0,math.sin(orient))
         NewGift:SetOrientation(OrientFromDir( vec ), true)
     end
+
+	-- create christmas tree
+	if GetSurfaceHeight(posx/2,posy/2) == GetTerrainHeight(posx/2,posy/2) then
+		local christmasTree = CreateProp( VECTOR3(posx/2,
+                            GetTerrainHeight(posx/2,posy/2),
+                            posy/2 ),
+                            '/mods/santa_is_coming_reloaded/props/christmastree/christmastree_prop.bp')
+        christmasTree:SetMaxReclaimValues( 10, 1, 1)
+        christmasTree:SetScale(0.24)
+
+        local orient = math.random(628)/100-3.14
+        local vec = VECTOR3(math.cos(orient),0,math.sin(orient))
+        christmasTree:SetOrientation(OrientFromDir( vec ), true)
+	end
 end
