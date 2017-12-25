@@ -5,6 +5,7 @@ UnitBlueprint {
 		'INVULNERABLE',
 		'MOBILE',
         'LAND',
+		'VISIBLETORECON',
     },
     Defense = {
         Health = 500000,
